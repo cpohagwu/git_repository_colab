@@ -8,6 +8,40 @@
 
 {% block body %} 
 
+
+
+
+  <div id="file-list">
+    <h3>Uploaded Files:</h3>
+    <ul>
+      {% for file in file_list %}
+        <li>{{ file }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+
+  <script>
+      // Retrieve the list of file names from the server and populate the file list
+      fetch('/files')
+          .then(response => response.json())
+          .then(fileNames => {
+              const fileList = document.getElementById('file-list');
+              fileNames.forEach(fileName => {
+                  const listItem = document.createElement('li');
+                  listItem.textContent = fileName;
+                  fileList.appendChild(listItem);
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  </script>
+
+
+
+
   <h1>TurboGPT</h1>
   <h3>Upload your text files and ask AI any question you want!</h3>
   
