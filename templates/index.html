@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <!-- Add Font Awesome stylesheet -->
-  <script src="https://kit.fontawesome.com/81c27c4a09.js" crossorigin="anonymous"></script>
+{% extends 'base.html' %}
+
+{% block head %}
 
 
+{% endblock %}
 
-</head>
-<body>
+
+{% block body %} 
+
   <h1>TurboGPT</h1>
   <h3>Upload your text files and ask AI any question you want!</h3>
   
-
-  <div id="popup"></div>
 
 
   <form method='POST' enctype='multipart/form-data'>
     {{form.hidden_tag()}}
     {{form.file()}}
-    {{form.submit()}}
-    
+    {{form.submit()}} 
   </form>
 
   <hr>
@@ -41,7 +34,6 @@
   {% endif %}
 
 
-
   {% if query and ai_response %}
     <i class="fas fa-user"></i>
     <h3>{{ query }}</h3>
@@ -57,6 +49,4 @@
     <input type='submit' value='Ask'>
   </form>
 
-
-</body>
-</html>
+{% endblock %}
