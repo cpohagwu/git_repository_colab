@@ -5,9 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <!-- Add Font Awesome stylesheet -->
+  <script src="https://kit.fontawesome.com/81c27c4a09.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <h1>Flask File Uploads Tutorial</h1> 
+  <h1>TurboGPT</h1>
+  <h3>Upload your text files and ask AI any question you want!</h3>
   
   <form method='POST' enctype='multipart/form-data'>
     {{form.hidden_tag()}}
@@ -18,16 +21,35 @@
 
   <hr>
 
-  <h1>Ask AI</h1>
+  {% if previous_queries %}
+    <h2>History</h2>
+    {% for query, ai_response in previous_queries %}
+      <div>
+        <i class="fas fa-user"></i>
+        <h3>{{ query }}</h3>
+        <i class="fas fa-robot"></i>
+        <p>{{ ai_response }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+
+
+  {% if query and ai_response %}
+    <i class="fas fa-user"></i>
+    <h3>{{ query }}</h3>
+    <i class="fas fa-robot"></i>
+    <p>{{ ai_response }}</p>
+  {% endif %}
+
+
+  <hr>
   
   <form method='POST' enctype='multipart/form-data'>
     <input type='text' name='ask_ai_query'>
     <input type='submit' value='Ask'>
   </form>
 
-  {% if response %}
-    <p>{{ response }}</p>
-  {% endif %}
 
 </body>
 </html>
